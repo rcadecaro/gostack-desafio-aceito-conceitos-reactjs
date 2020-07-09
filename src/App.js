@@ -1,14 +1,22 @@
-import React from "react";
-
+import React, { useState } from "react";
+import api from "./services/api";
 import "./styles.css";
 
 function App() {
+  const [repositories, setRepositories] = useState([]);
+
   async function handleAddRepository() {
-    // TODO
+    const response = await api.post("/repositories", {
+      title: "Cadecaro",
+      url: "http://www.cadecaro.com.br",
+      techs: ["React", "NodeJS"],
+    });
+    setRepositories([...repositories, response.data]);
   }
 
   async function handleRemoveRepository(id) {
     // TODO
+    console.log("handleRemoveRepository");
   }
 
   return (
